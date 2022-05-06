@@ -8,3 +8,7 @@
 /.vs/VSWorkspaceState.json
 /.vs/slnx.sqlite
 /.vs/DSA/v16
+/BinaryTree/.vs/BinaryTree/DesignTimeBuild
+/TreeTraversal/.vs/TreeTraversal
+/TreeTraversal/bin/Debug/net5.0
+/TreeTraversal/obj
