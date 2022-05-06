@@ -53,6 +53,30 @@ namespace TreeTraversal
             Console.WriteLine("\nPost-Order Traversal:-");
             PostOrder(tree.root);
 
+            Console.WriteLine("\n Level Order Traversal");
+            LevelOrder(tree.root);
         }
+
+        public static void LevelOrder(Node root)
+        {            
+            int height = BST.findHeight(root);
+            //Console.WriteLine($"Height of Tree: {height}");
+            for (int i = 0; i <= height; i++)
+            {
+                PrintThisLevel(root, i);
+            }
+        }
+
+        private static void PrintThisLevel(Node root, int level)
+        {
+            if (root == null) return;
+            if (level == 1) Console.Write($"{root.Display()} ");
+            else if(level>1)
+            {
+                PrintThisLevel(root.left, level - 1);
+                PrintThisLevel(root.right, level - 1);
+            }
+        }
+
     }
 }

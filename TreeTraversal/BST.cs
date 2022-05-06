@@ -15,6 +15,14 @@ namespace TreeTraversal
             root = null;
         }
 
+        public static int findHeight(Node node)
+        {
+            if (node == null)
+                return 0;
+            else
+                return Math.Max(findHeight(node.left), findHeight(node.right)) + 1;
+        }
+
         public void AddNode(int x)
         {
             Node new_node = new Node(x);
