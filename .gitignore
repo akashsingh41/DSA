@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/BinaryTree/obj
+/BinaryTree/.vs/BinaryTree/v16
+/BinaryTree/bin/Debug/net5.0
+/.vs/VSWorkspaceState.json
+/.vs/slnx.sqlite
+/.vs/DSA/v16
