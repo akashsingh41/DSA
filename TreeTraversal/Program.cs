@@ -1,4 +1,6 @@
 ﻿using System;
+using BinaryTree;
+
 
 namespace TreeTraversal
 {
