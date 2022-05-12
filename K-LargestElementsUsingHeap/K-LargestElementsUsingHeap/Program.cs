@@ -1,0 +1,220 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace K_LargestElementsUsingHeap
+{
+    internal class MinHeap
+    {// To store array of elements in heap
+        public int[] heapArray { get; set; }
+
+        // max size of the heap
+        public int capacity { get; set; }
+
+        // Current number of elements in the heap
+        public int current_heap_size { get; set; }
+
+        // Constructor 
+        public MinHeap(int n)
+        {
+            capacity = n;
+            heapArray = new int[capacity];
+            current_heap_size = 0;
+        }
+
+        // Swapping using reference 
+        public static void Swap<T>(ref T lhs, ref T rhs)
+        {
+            T temp = lhs;
+            lhs = rhs;
+            rhs = temp;
+        }
+
+        // Get the Parent index for the given index
+        public int Parent(int key)
+        {
+            return (key - 1) / 2;
+        }
+
+        // Get the Left Child index for the given index
+        public int Left(int key)
+        {
+            return 2 * key + 1;
+        }
+
+        // Get the Right Child index for the given index
+        public int Right(int key)
+        {
+            return 2 * key + 2;
+        }
+
+        // Inserts a new key
+        public bool insertKey(int key)
+        {
+            if (current_heap_size == capacity)
+            {
+                // heap is full
+                return false;
+            }
+
+            // First insert the new key at the end 
+            int i = current_heap_size;
+            heapArray[i] = key;
+            current_heap_size++;
+
+            // Fix the min heap property if it is violated 
+            while (i != 0 && heapArray[i] < heapArray[Parent(i)])
+            {
+                Swap(ref heapArray[i], ref heapArray[Parent(i)]);
+                i = Parent(i);
+            }
+            return true;
+        }
+
+        // Decreases value of given key to new_val. 
+        // It is assumed that new_val is smaller than heapArray[key]. 
+        public void decreaseKey(int key, int new_val)
+        {
+            heapArray[key] = new_val;
+
+            while (key != 0 && heapArray[key] < heapArray[Parent(key)])
+            {
+                Swap(ref heapArray[key], ref heapArray[Parent(key)]);
+                key = Parent(key);
+            }
+        }
+
+        // Returns the minimum key (key at root) from min heap 
+        public int getMin()
+        {
+            return heapArray[0];
+        }
+
+        // Method to remove minimum element (or root) from min heap 
+        public int extractMin()
+        {
+            if (current_heap_size <= 0)
+            {
+                return int.MaxValue;
+            }
+
+            if (current_heap_size == 1)
+            {
+                current_heap_size--;
+                return heapArray[0];
+            }
+
+            // Store the minimum value, and remove it from heap 
+            int root = heapArray[0];
+
+            heapArray[0] = heapArray[current_heap_size - 1];
+            current_heap_size--;
+            MinHeapify(0);
+
+            return root;
+        }
+
+        // This function deletes key at the given index. It first reduced value to minus infinite, then calls extractMin()
+        public void deleteKey(int key)
+        {
+            decreaseKey(key, int.MinValue);
+            extractMin();
+        }
+
+        // A recursive method to heapify a subtree with the root at given index
+        // This method assumes that the subtrees are already heapified
+        public void MinHeapify(int key)
+        {
+            int l = Left(key);
+            int r = Right(key);
+
+            int smallest = key;
+            if (l < current_heap_size &&
+                heapArray[l] < heapArray[smallest])
+            {
+                smallest = l;
+            }
+            if (r < current_heap_size &&
+                heapArray[r] < heapArray[smallest])
+            {
+                smallest = r;
+            }
+
+            if (smallest != key)
+            {
+                Swap(ref heapArray[key],
+                     ref heapArray[smallest]);
+                MinHeapify(smallest);
+            }
+        }
+
+        // Increases value of given key to new_val.
+        // It is assumed that new_val is greater than heapArray[key]. Heapify from the given key
+        public void increaseKey(int key, int new_val)
+        {
+            heapArray[key] = new_val;
+            MinHeapify(key);
+        }
+
+        // Changes value on a key
+        public void changeValueOnAKey(int key, int new_val)
+        {
+            if (heapArray[key] == new_val)
+            {
+                return;
+            }
+            if (heapArray[key] < new_val)
+            {
+                increaseKey(key, new_val);
+            }
+            else
+            {
+                decreaseKey(key, new_val);
+            }
+        }
+    }
+    internal class Program
+    {
+
+        static void firstKElements(int[] arr, int size, int k)
+        {
+            List<int> minHeap = new List<int>();
+            for (int i = 0; i < k; i++)
+            {
+                minHeap.Add(arr[i]);
+            }
+
+            // Loop For each element in array after the kth element
+            for (int i = k; i < size; i++)
+            {
+                minHeap.Sort();
+
+                // If current element is smaller than minimum ((top element of the minHeap) element, do nothing and continue to next element
+                if (minHeap[0] > arr[i])
+                    continue;
+
+                // Otherwise Change minimum element (top element of the minHeap) to current element by polling out the top element of the minHeap
+                else
+                {
+                    minHeap.RemoveAt(0);
+                    minHeap.Add(arr[i]);
+                }
+            }
+
+            // Now min heap contains k maximum elements, Iterate and print 
+            foreach (int i in minHeap)
+            {
+                Console.Write(i + " ");
+            }
+        }
+        static void Main(string[] args)
+        {
+            int[] arr = { 11, 3, 2, 1, 15, 5, 4,
+                  45, 88, 96, 50, 45 };
+            int size = arr.Length;
+
+            // Size of Min Heap
+            int k = 3;
+            firstKElements(arr, size, k);
+        }
+    }
+}
