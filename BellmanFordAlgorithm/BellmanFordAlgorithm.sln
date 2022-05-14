@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BellmanFordAlgorithm", "BellmanFordAlgorithm\BellmanFordAlgorithm.csproj", "{A01ECB14-E15E-48C3-8B49-C13480E867AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A01ECB14-E15E-48C3-8B49-C13480E867AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A01ECB14-E15E-48C3-8B49-C13480E867AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A01ECB14-E15E-48C3-8B49-C13480E867AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A01ECB14-E15E-48C3-8B49-C13480E867AA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0ACC69A4-603C-412E-B778-DD2E7A6645A4}
+	EndGlobalSection
+EndGlobal
