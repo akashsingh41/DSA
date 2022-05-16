@@ -36,8 +36,8 @@ namespace LongestCommonSubsequence
         }
         static void Main(string[] args)
         {
-            String s1 = "AGGTAB";
-            String s2 = "GXTXAYB";
+            String s1 = "ABCDGH";
+            String s2 = "ACDGHR";
 
             char[] X = s1.ToCharArray();
             char[] Y = s2.ToCharArray();
